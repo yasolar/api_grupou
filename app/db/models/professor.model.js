@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require('../index').getConnection();
 const name = require('path').basename(__filename.replace('.model',''),'.js');
 
-const Aluno = sequelize.define(name, 
+const Professor = sequelize.define(name, 
     {
         matricula: {
             type: DataTypes.STRING(10)
@@ -15,22 +15,22 @@ const Aluno = sequelize.define(name,
     }
 );
 
-Aluno.associate = (models) => {
-    Aluno.belongsTo(models.usuario, {
+Professor.associate = (models) => {
+    Professor.belongsTo(models.usuario, {
         foreignKey:{
             name:'id_usuario'
         },
         as:'usuario'
     })
 
-    Aluno.belongsToMany(models.hardSkill, {
-        through: 'aluno_hardSkill',
+    Professor.belongsToMany(models.hardSkill, {
+        through: 'professor_hardSkill',
         timestamps:false,
         foreignKey: {
-            name:'id_aluno'
+            name:'id_professor'
         },
         as:'hardSkills'
     })
 }
 
-module.exports = Aluno;
+module.exports = Professor;

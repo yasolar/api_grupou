@@ -2,9 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const db = require('./app/db/models');
 
-// db.sequelize.sync({force: true}).then(()=>{
-//     console.log('Tabelas criadas!');
-// })
+db.sequelize.sync({force: true}).then(()=>{
+    console.log('Tabelas criadas!');
+})
 
 const app = express();
 
